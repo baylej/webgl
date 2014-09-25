@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>WebGL Test</title> 
+	<style>
+	#glCanvas {
+		border: 1px solid black;	
+	}
+	.centered {
+		width: 800px;
+		margin-right: auto;
+		margin-left: auto;
+	}
+	</style>
+</head>
+
+<body>
+	<div class="centered">
+	<canvas id="glCanvas" width="800" height="600">
+		If you see this message, your browser might not support HTML5 canvas.
+	</canvas>
+	</div>
+	
+	<script type="text/javascript">
+		// DOM get the canvas
+		var canvas = document.getElementById('glCanvas');
+		
+		// Retrieve the WebGL context from the canvas
+		var gl = canvas.getContext('webgl');
+	</script>
+	
+	<script type="text/javascript" src="gl-matrix/gl-matrix.js"></script>
+	
+	<script type="text/javascript" src="3D/glw.js"></script>
+	<script type="text/javascript" src="3D/shaders.js"></script>
+	<script type="text/javascript" src="3D/camera.js"></script>
+	<script type="text/javascript" src="3D/geometry.js"></script>
+	<script type="text/javascript" src="3D/axis.js"></script>
+	
+	<script type="text/javascript" src="game.js"></script>
+	
+</body>
+</html>
