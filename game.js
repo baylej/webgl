@@ -54,9 +54,12 @@ function main() {
     loop();
 }
 
-try {
-	main();
-}
-catch (msg) {
-	console.log(msg);
+if (gl != null) {
+	log('Launching ...');
+	try {
+		main();
+	}
+	catch (msg) {
+		log(msg);
+	}
 }

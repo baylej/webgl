@@ -7,6 +7,13 @@
 	#glCanvas {
 		border: 1px solid black;	
 	}
+	#log {
+		border: 3px inset black;
+		height: 180px;
+		width: 600px;
+		overflow-x: hidden;
+		overflow-y: visible;
+	}
 	.centered {
 		width: 800px;
 		margin-right: auto;
@@ -21,13 +28,35 @@
 		If you see this message, your browser might not support HTML5 canvas.
 	</canvas>
 	</div>
+	<div id="log" class="centered"><!-- LOGGING --></div>
 	
 	<script type="text/javascript">
+		// DOM get the logging div
+		var logElement = document.getElementById('log');
+		// logging function
+		function log(msg) {
+			logElement.appendChild(document.createTextNode(msg));
+			logElement.appendChild(document.createElement('br'));
+		}
+		
 		// DOM get the canvas
 		var canvas = document.getElementById('glCanvas');
 		
 		// Retrieve the WebGL context from the canvas
 		var gl = canvas.getContext('webgl');
+		if (gl == null) {
+			log('Retrieval of `webgl` context failed. Retrieving experimental-webgl context.');
+			gl = canvas.getContext('experimental-webgl');
+			if (gl == null) {
+				log('Retrieval of `experimental-webgl` context failed. Your browser/GPU may not be compatible.');
+			}
+			else {
+				log('`experimental-webgl` context created. This implementation of WebGL is experimental, this program might not work as expected !');
+			}
+		}
+		else {
+			log('`webgl` context created.');
+		}
 	</script>
 	
 	<script type="text/javascript" src="gl-matrix/gl-matrix.js"></script>
